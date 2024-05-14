@@ -7,12 +7,13 @@ services:
             - POSTGRES_PASSWORD=postgres
             - POSTGRES_DB=test
         image: postgres:latest
+        container_name: postgres_db
         logging:
             options:
                 max-file: "3"
                 max-size: 10m
         ports:
-            - 5438:5432
+            - 5433:5432
         restart: always
         networks:
             - postgres_net
