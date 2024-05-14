@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"errors"
+	"log"
 
 	"github.com/manifoldco/promptui"
 
@@ -31,4 +32,6 @@ func StarterRootRun() {
 	utils.ErrorWithLog(err)
 
 	CreateProject(SParam{PackageName: pkg, DBOpts: utils.DBSelected(databaseSelect)})
+
+	log.Println("Success generate!")
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"path/filepath"
 
@@ -17,9 +18,8 @@ type SParam struct {
 
 func CreateProject(p SParam) {
 	for _, p := range projectDirectoryLists {
-		if err := createAppPath(p); err != nil {
-			panic(err)
-		}
+		log.Printf("layer '%s' created successfully.\n", p)
+		utils.ErrorWithLog(createAppPath(p))
 	}
 
 	gover := utils.GetGoVersion()
@@ -37,6 +37,7 @@ func CreateProject(p SParam) {
 		{TmplFile: "viper.tmpl", OutputFile: "./internals/config/viper.go"},
 		{TmplFile: "helpers.tmpl", OutputFile: "./internals/helpers/helpers.go"},
 		{TmplFile: appConfig, OutputFile: "./config.dev.yaml"},
+		{TmplFile: "makefile.tmpl", OutputFile: "./Makefile"},
 	}
 
 	for _, s := range starter {
