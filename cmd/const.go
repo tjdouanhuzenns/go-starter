@@ -3,7 +3,6 @@ package cmd
 var (
 	projectDirectoryLists = []string{
 		"cmd",
-		"api",
 		"db/migrations",
 		"internals/config",
 		"internals/delivery/http",

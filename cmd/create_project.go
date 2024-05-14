@@ -27,14 +27,16 @@ func CreateProject(p SParam) {
 	compose := tmplStr("compose", p.DBOpts)
 	main := tmplStr("main", p.DBOpts)
 	deps := tmplStr("deps", p.DBOpts)
+	appConfig := tmplStr("app_config", p.DBOpts)
 
 	starter := []gen.AppStructure{
-		{TmplFile: config, OutputFile: fmt.Sprintf("internals/db/%s.go", p.DBOpts)},
-		{TmplFile: compose, OutputFile: "compose.yaml"},
-		{TmplFile: main, OutputFile: "cmd/main.go"},
-		{TmplFile: deps, OutputFile: "go.mod"},
-		{TmplFile: "viper.tmpl", OutputFile: "internals/config/viper.go"},
-		{TmplFile: "helpers.tmpl", OutputFile: "internals/helpers/helpers.go"},
+		{TmplFile: config, OutputFile: fmt.Sprintf("./internals/config/%s.go", p.DBOpts)},
+		{TmplFile: compose, OutputFile: "./compose.yaml"},
+		{TmplFile: main, OutputFile: "./cmd/main.go"},
+		{TmplFile: deps, OutputFile: "./go.mod"},
+		{TmplFile: "viper.tmpl", OutputFile: "./internals/config/viper.go"},
+		{TmplFile: "helpers.tmpl", OutputFile: "./internals/helpers/helpers.go"},
+		{TmplFile: appConfig, OutputFile: "./config.dev.yaml"},
 	}
 
 	for _, s := range starter {
