@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+    mysql_db:
+        command:
+            - mysqld
+            - --character-set-server=utf8mb4
+            - --collation-server=utf8mb4_unicode_ci
+            - --default-time-zone=+09:00
+        container_name: mysql_db
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+        image: mysql:latest
+        networks:
+            - mysql_network
+        ports:
+            - 3306:3306
+        restart: on-failure
+
+networks:
+    mysql_network:
+        driver: bridge
+        name: mysql_network

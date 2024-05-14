@@ -1,0 +1,28 @@
+package main
+
+import (
+    "{{.PackageName}}/internals/config"
+    "{{.PackageName}}/internals/helpers"
+	"flag"
+	"fmt"
+)
+	
+var stage *string
+	
+func init() {
+	stage = flag.String("s", "dev", "❌ please input stage !")
+	flag.Parse()
+}
+	
+func main() {
+	v := config.NewViper(*stage)
+	db := config.NewPostgresConnection(v)
+	
+	d, err := db.DB()
+	helpers.ErrorLogger(err)
+	
+	err2 := d.Ping()
+	helpers.ErrorLogger(err2)
+	
+	fmt.Println("✅ connected")
+}

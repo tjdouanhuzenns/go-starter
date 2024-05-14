@@ -1,0 +1,26 @@
+package config
+
+import (
+	"{{.PackageName}}/internals/helpers"
+	"fmt"
+
+	"github.com/spf13/viper"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
+)
+
+func NewPostgresConnection(v *viper.Viper) *gorm.DB {
+	username := v.GetString("database.username")
+	password := v.GetString("database.password")
+	host := v.GetString("database.host")
+	port := v.GetInt("database.port")
+	database := v.GetString("database.name")
+	sslMode := v.GetString("database.sslmode")
+	timeZone := v.GetString("database.time_zone")
+
+	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%d sslmode=%s TimeZone=%s", host, username, password, database, port, sslMode, timeZone)
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	helpers.ErrorLogger(err)
+
+	return db
+}

@@ -1,0 +1,29 @@
+package main
+
+import (
+	"flag"
+	"fmt"
+
+	"{{.PackageName}}/internals/config"
+	"{{.PackageName}}/internals/helpers"
+)
+	
+var stage *string
+	
+func init() {
+	stage = flag.String("s", "dev", "❌ please input stage !")
+	flag.Parse()
+}
+	
+func main() {
+	v := config.NewViper(*stage)
+	db := config.NewMysqlConnection(v)
+	
+	d, err := db.DB()
+	helpers.ErrorLogger(err)
+	
+	err2 := d.Ping()
+	helpers.ErrorLogger(err2)
+	
+	fmt.Println("✅ connected")
+}
