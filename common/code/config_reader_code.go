@@ -12,6 +12,8 @@ func NewViper(in string) *viper.Viper {
 		in = "config.prod"
 	case "dev":
 		in = "config.dev"
+	case "test":
+		in = "config.test"
 	default:
 		in = "config.dev"
 	}
