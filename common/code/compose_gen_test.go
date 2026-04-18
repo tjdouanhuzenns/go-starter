@@ -2,7 +2,7 @@ package code_test
 
 import (
 	"io/fs"
-	"io/ioutil"
+	"os"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -20,7 +20,7 @@ func TestGenMysqlCompose(t *testing.T) {
 	out, err := yaml.Marshal(m)
 	assert.Nil(t, err)
 
-	err2 := ioutil.WriteFile(genFolder+"mysql.yaml", out, fs.ModePerm|fs.ModeAppend)
+	err2 := os.WriteFile(genFolder+"mysql.yaml", out, fs.ModePerm)
 	assert.Nil(t, err2)
 }
 
@@ -29,7 +29,7 @@ func TestGenPostgresCompose(t *testing.T) {
 	out, err := yaml.Marshal(m)
 	assert.Nil(t, err)
 
-	err2 := ioutil.WriteFile(genFolder+"postgres.yaml", out, fs.ModePerm|fs.ModeAppend)
+	err2 := os.WriteFile(genFolder+"postgres.yaml", out, fs.ModePerm)
 	assert.Nil(t, err2)
 }
 
@@ -38,6 +38,6 @@ func TestGenMongoCompose(t *testing.T) {
 	out, err := yaml.Marshal(m)
 	assert.Nil(t, err)
 
-	err2 := ioutil.WriteFile(genFolder+"mongodb.yaml", out, fs.ModePerm|fs.ModeAppend)
+	err2 := os.WriteFile(genFolder+"mongodb.yaml", out, fs.ModePerm)
 	assert.Nil(t, err2)
 }
