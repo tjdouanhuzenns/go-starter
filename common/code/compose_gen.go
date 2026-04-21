@@ -5,7 +5,7 @@ var (
 		"version": "3.8",
 		"services": map[string]interface{}{
 			"mysql_db": map[string]interface{}{
-				"image":          "mysql:latest",
+				"image":          "mysql:8.0",
 				"container_name": "mysql_db",
 				"restart":        "on-failure",
 				"ports": []interface{}{
@@ -18,7 +18,7 @@ var (
 					"mysqld",
 					"--character-set-server=utf8mb4",
 					"--collation-server=utf8mb4_unicode_ci",
-					"--default-time-zone=+09:00",
+					"--default-time-zone=+00:00",
 				},
 				"networks": []string{
 					"mysql_network",
@@ -36,7 +36,7 @@ var (
 		"version": "3.8",
 		"services": map[string]interface{}{
 			"postgres": map[string]interface{}{
-				"image":   "postgres:latest",
+				"image":   "postgres:15",
 				"restart": "always",
 				"environment": []string{
 					"POSTGRES_USER=postgres",
@@ -57,7 +57,7 @@ var (
 		"version": "3.8",
 		"services": map[string]interface{}{
 			"mongodb": map[string]interface{}{
-				"image":          "mongo:4.4.2-bionic",
+				"image":          "mongo:6.0",
 				"container_name": "mongodb",
 				"ports":          []string{"27017:27017"},
 				"environment": []string{
