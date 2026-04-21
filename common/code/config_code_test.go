@@ -11,14 +11,16 @@ import (
 	"github.com/fanchann/go-starter/common/code"
 )
 
+// use 0644 instead of fs.ModePerm|fs.ModeAppend to avoid overly permissive file permissions
+const configFileMode = fs.FileMode(0644)
+
 func TestGenConfigMysql(t *testing.T) {
 	m := code.ConfigurationFileGenerate("mysql")
 
 	out, err := yaml.Marshal(m)
 	assert.Nil(t, err)
 
-	// replaced deprecated ioutil.WriteFile with os.WriteFile
-	err2 := os.WriteFile(genFolder+"config.mysql.yaml", out, fs.ModePerm|fs.ModeAppend)
+	err2 := os.WriteFile(genFolder+"config.mysql.yaml", out, configFileMode)
 	assert.Nil(t, err2)
 }
 
@@ -28,8 +30,7 @@ func TestGenConfigMongoDB(t *testing.T) {
 	out, err := yaml.Marshal(m)
 	assert.Nil(t, err)
 
-	// replaced deprecated ioutil.WriteFile with os.WriteFile
-	err2 := os.WriteFile(genFolder+"config.mongodb.yaml", out, fs.ModePerm|fs.ModeAppend)
+	err2 := os.WriteFile(genFolder+"config.mongodb.yaml", out, configFileMode)
 	assert.Nil(t, err2)
 }
 
@@ -38,7 +39,6 @@ func TestGenConfigPostgres(t *testing.T) {
 	out, err := yaml.Marshal(m)
 	assert.Nil(t, err)
 
-	// replaced deprecated ioutil.WriteFile with os.WriteFile
-	err2 := os.WriteFile(genFolder+"config.postgres.yaml", out, fs.ModePerm|fs.ModeAppend)
+	err2 := os.WriteFile(genFolder+"config.postgres.yaml", out, configFileMode)
 	assert.Nil(t, err2)
 }
