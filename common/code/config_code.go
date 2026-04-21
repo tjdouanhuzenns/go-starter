@@ -10,6 +10,11 @@ var (
 			"name":      "test",
 			"sslmode":   "disable",
 			"time_zone": "UTC",
+			"pool": map[string]interface{}{
+				"idle":     10,
+				"max":      25,
+				"lifetime": 300,
+			},
 		},
 	}
 
@@ -39,6 +44,7 @@ var (
 // ConfigurationFileGenerate returns a default YAML config map for the given database driver.
 // Supported values: "mongodb", "mysql", "postgres". Defaults to postgres if unrecognized.
 // Note: changed default time_zone from "Asia/Jakarta" to "UTC" for broader compatibility.
+// Note: added pool settings to postgresYamlConfig to match mysql defaults for consistency.
 func ConfigurationFileGenerate(using string) map[string]interface{} {
 	switch using {
 	case "mongodb":
