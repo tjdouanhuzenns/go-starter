@@ -20,6 +20,9 @@ func TestGenMysqlCompose(t *testing.T) {
 	out, err := yaml.Marshal(m)
 	assert.Nil(t, err)
 
+	// ensure gen directory exists before writing
+	_ = os.MkdirAll(genFolder, fs.ModePerm)
+
 	err2 := os.WriteFile(genFolder+"mysql.yaml", out, fs.ModePerm)
 	assert.Nil(t, err2)
 }
@@ -29,6 +32,9 @@ func TestGenPostgresCompose(t *testing.T) {
 	out, err := yaml.Marshal(m)
 	assert.Nil(t, err)
 
+	// ensure gen directory exists before writing
+	_ = os.MkdirAll(genFolder, fs.ModePerm)
+
 	err2 := os.WriteFile(genFolder+"postgres.yaml", out, fs.ModePerm)
 	assert.Nil(t, err2)
 }
@@ -37,6 +43,9 @@ func TestGenMongoCompose(t *testing.T) {
 	m := code.ComposeCodeGenerate("mongodb")
 	out, err := yaml.Marshal(m)
 	assert.Nil(t, err)
+
+	// ensure gen directory exists before writing
+	_ = os.MkdirAll(genFolder, fs.ModePerm)
 
 	err2 := os.WriteFile(genFolder+"mongodb.yaml", out, fs.ModePerm)
 	assert.Nil(t, err2)
