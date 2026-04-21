@@ -36,7 +36,8 @@ var (
 		"version": "3.8",
 		"services": map[string]interface{}{
 			"postgres": map[string]interface{}{
-				"image":   "postgres:15",
+				// using postgres:16 for improved performance and JSON support
+				"image":   "postgres:16",
 				"restart": "always",
 				"environment": []string{
 					"POSTGRES_USER=postgres",
