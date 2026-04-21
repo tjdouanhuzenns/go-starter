@@ -2,7 +2,7 @@ package code_test
 
 import (
 	"io/fs"
-	"io/ioutil"
+	"os"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -17,7 +17,8 @@ func TestGenConfigMysql(t *testing.T) {
 	out, err := yaml.Marshal(m)
 	assert.Nil(t, err)
 
-	err2 := ioutil.WriteFile(genFolder+"config.mysql.yaml", out, fs.ModePerm|fs.ModeAppend)
+	// replaced deprecated ioutil.WriteFile with os.WriteFile
+	err2 := os.WriteFile(genFolder+"config.mysql.yaml", out, fs.ModePerm|fs.ModeAppend)
 	assert.Nil(t, err2)
 }
 
@@ -27,7 +28,8 @@ func TestGenConfigMongoDB(t *testing.T) {
 	out, err := yaml.Marshal(m)
 	assert.Nil(t, err)
 
-	err2 := ioutil.WriteFile(genFolder+"config.mongodb.yaml", out, fs.ModePerm|fs.ModeAppend)
+	// replaced deprecated ioutil.WriteFile with os.WriteFile
+	err2 := os.WriteFile(genFolder+"config.mongodb.yaml", out, fs.ModePerm|fs.ModeAppend)
 	assert.Nil(t, err2)
 }
 
@@ -36,6 +38,7 @@ func TestGenConfigPostgres(t *testing.T) {
 	out, err := yaml.Marshal(m)
 	assert.Nil(t, err)
 
-	err2 := ioutil.WriteFile(genFolder+"config.postgres.yaml", out, fs.ModePerm|fs.ModeAppend)
+	// replaced deprecated ioutil.WriteFile with os.WriteFile
+	err2 := os.WriteFile(genFolder+"config.postgres.yaml", out, fs.ModePerm|fs.ModeAppend)
 	assert.Nil(t, err2)
 }
