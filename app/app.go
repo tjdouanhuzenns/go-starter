@@ -34,6 +34,8 @@ func GoStarter(opt Options) error {
 		"internals/usecase",
 		"internals/helpers",
 		"tests",
+		// added: dedicated directory for middleware
+		"internals/delivery/middleware",
 	}
 	return generateStructure(opt, restDirectoryList)
 }
